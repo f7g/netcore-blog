@@ -1,7 +1,16 @@
+// https://learn.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-7.0&tabs=macos
+using Blog.Data;
+using Blog.Models;
+using Microsoft.EntityFrameworkCore;
+
 // Add services to the container
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<BlogDbContext>(options => {
+    options.UseNpgsql(connectionString);
+});
 
 // Configure the HTTP request pipeline
 var app = builder.Build();
