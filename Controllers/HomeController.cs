@@ -1,16 +1,16 @@
 using Blog.Models;
-using Blog.Data;
+using Blog.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers;
 
 public class HomeController : Controller {
     // Global variables
-    private BlogDbContext _context;
+    private IRepository _repo;
 
     // Constructor
-    public HomeController(BlogDbContext context) {
-        _context = context;
+    public HomeController(IRepository repo) {
+        _repo = repo;
     }
 
     [HttpGet]
@@ -30,8 +30,10 @@ public class HomeController : Controller {
 
     [HttpPost]
     public async Task<IActionResult> Edit(Post post) {
-        _context.Posts.Add(post);
-        await _context.SaveChangesAsync();
-        return RedirectToAction("Index");
+        _repo.AddPost(post);
+        if (await _repo.SaveChangesAsync())
+            return RedirectToAction("Index");
+        else
+            return View(post);
     }
 }

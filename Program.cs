@@ -1,6 +1,7 @@
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-7.0&tabs=macos
 using Blog.Data;
 using Microsoft.EntityFrameworkCore;
+using Blog.Repository;
 
 // Add services to the container
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BlogDbContext>(options => {
     options.UseSqlServer(connectionString);
 });
+builder.Services.AddTransient<IRepository, Repository>(); // Make the repository available in your program
 
 // Configure the HTTP request pipeline
 var app = builder.Build();
