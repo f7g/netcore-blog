@@ -25,7 +25,7 @@ public class AuthController : Controller {
     }
 
     [HttpGet]
-    public async Task<IActionResult> SignOut() {
+    public async Task<IActionResult> LogOut() {
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }

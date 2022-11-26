@@ -12,8 +12,8 @@
     <nav>
         <a asp-controller="Home" asp-action="Index">Home</a>
         <a asp-controller="Home" asp-action="Edit">Create Post</a>
-        @if (User.Identity.IsAuthenticated) {
-            <a asp-controller="Auth" asp-action="SignOut">Sign Out</a>
+        if (User.Identity.IsAuthenticated) {
+            <a asp-controller="Auth" asp-action="LogOut">Log Out</a>
         } else {
             <a asp-controller="Auth" asp-action="SignIn">Sign In</a>
         }

@@ -21,7 +21,9 @@ public class Repository : IRepository {
     }
 
     public Post GetPost(int id) {
-        return _context.Posts.FirstOrDefault(p => p.Id == id);
+        var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+        if (post == null) return new Post();
+        return post;
     }
 
     public void RemovePost(int id) {
