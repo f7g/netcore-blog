@@ -1,5 +1,11 @@
 @model PostViewModel
 
+@if(Model.Id > 0) {
+    <h1>Edit Post</h1>
+} else {
+    <h1>Create New Post</h1>
+}
+
 <div>
     @* enctype="multipart/form-data" attr allows you to submit your form with files in it *@
     <form asp-controller="Panel" asp-action="Edit" method="post" enctype="multipart/form-data">

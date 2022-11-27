@@ -1,10 +1,11 @@
 @model IEnumerable<Post>
 
-<h2>Home Page</h2>
+<h1>Hello!</h1>
 
 <img src="~/content/static/jason-hawke-gduUBwIc4j4-unsplash.jpg" height="300" />
 
-<div>
+<section>
+    <h3>Blog Posts</h3>
     <ul>
         @foreach (var post in Model) {
             <li>
@@ -14,4 +15,4 @@
             </li>
         }
     </ul>
-</div>
+</section>
