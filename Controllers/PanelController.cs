@@ -1,5 +1,6 @@
 using Blog.Models;
 using Blog.Data.Repository;
+using Blog.Data.FileManager;
 using Blog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace Blog.Controllers;
 public class PanelController : Controller { 
     // Global variables
     private IRepository _repo;
+    private IFileManager _fileManager;
 
     // Constructor
-    public PanelController(IRepository repo) {
+    public PanelController(IRepository repo, IFileManager fileManager) {
         _repo = repo;
+        _fileManager = fileManager;
     }
 
     [HttpGet]
@@ -41,7 +44,7 @@ public class PanelController : Controller {
             Id = vm.Id,
             Title = vm.Title,
             Body = vm.Body,
-            Image = "", // To do store image from view model
+            Image = await _fileManager.SaveImage(vm.Image),
         };
 
         if (post.Id > 0) _repo.UpdatePost(post);

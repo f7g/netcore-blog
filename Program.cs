@@ -1,6 +1,7 @@
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-7.0&tabs=macos
 using Blog.Data;
 using Blog.Data.Repository;
+using Blog.Data.FileManager;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
@@ -22,6 +23,7 @@ builder.Services.ConfigureApplicationCookie(options => { // Overwrite the redire
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IRepository, Repository>();
+builder.Services.AddTransient<IFileManager, FileManager>();
 
 /*
  * Configure the HTTP request pipeline
