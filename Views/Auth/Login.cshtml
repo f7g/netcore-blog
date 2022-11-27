@@ -3,11 +3,11 @@
 <form asp-controller="Auth" asp-action="Login" method="post">
     <div>
         <label>Username</label>
-        <input asp-for="Username"/>
+        <input required asp-for="Username"/>
     </div>
     <div>
         <label>Password</label>
-        <input asp-for="Password"/>
+        <input required asp-for="Password"/>
     </div>
     <input type="submit" value="Sign In" />
 </form>

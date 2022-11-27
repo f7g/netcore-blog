@@ -20,6 +20,8 @@ public class AuthController : Controller {
 
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginViewModel) {
+        if (loginViewModel.Username == null) return RedirectToAction("Login");
+        if (loginViewModel.Password == null) return RedirectToAction("Login");
         var result = await _signInManager.PasswordSignInAsync(loginViewModel.Username, loginViewModel.Password, false, false);
         return RedirectToAction("Index", "Panel");
     }
