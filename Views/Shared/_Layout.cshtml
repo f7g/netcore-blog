@@ -11,11 +11,12 @@
 <body>
     <nav>
         <a asp-controller="Home" asp-action="Index">Home</a>
-        <a asp-controller="Home" asp-action="Edit">Create Post</a>
-        if (User.Identity.IsAuthenticated) {
-            <a asp-controller="Auth" asp-action="LogOut">Log Out</a>
-        } else {
-            <a asp-controller="Auth" asp-action="SignIn">Sign In</a>
+        <a asp-controller="Panel" asp-action="Index">Admin Panel</a>
+        @if (User.Identity != null && User.Identity.IsAuthenticated) {
+            <a asp-controller="Auth" asp-action="Logout">Log Out</a>
+        }
+        else {
+            <a asp-controller="Auth" asp-action="Login">Sign In</a>
         }
     </nav>
     <div>@RenderBody()</div>

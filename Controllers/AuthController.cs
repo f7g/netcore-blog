@@ -14,18 +14,18 @@ public class AuthController : Controller {
     }
 
     [HttpGet]
-    public IActionResult SignIn() {
-        return View(new SignInViewModel());
+    public IActionResult Login() {
+        return View(new LoginViewModel());
     }
 
     [HttpPost]
-    public async Task<IActionResult> SignIn(SignInViewModel signInViewModel) {
-        await _signInManager.PasswordSignInAsync(signInViewModel.Username, signInViewModel.Password, false, false);
-        return RedirectToAction("Index", "Home");
+    public async Task<IActionResult> Login(LoginViewModel loginViewModel) {
+        var result = await _signInManager.PasswordSignInAsync(loginViewModel.Username, loginViewModel.Password, false, false);
+        return RedirectToAction("Index", "Panel");
     }
 
     [HttpGet]
-    public async Task<IActionResult> LogOut() {
+    public async Task<IActionResult> Logout() {
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }

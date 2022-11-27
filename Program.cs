@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Identity;
 // Add services to the container
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddRazorPages();
-builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BlogDbContext>(options => {
     options.UseSqlServer(connectionString);
 });
@@ -18,7 +16,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
     options.Password.RequireUppercase = true;
     options.Password.RequiredLength = 8;
 }).AddEntityFrameworkStores<BlogDbContext>();
-builder.Services.AddTransient<IRepository, Repository>(); // Make the repository available in your program
+builder.Services.ConfigureApplicationCookie(options => { // Overwrite the redirect login url
+    options.LoginPath = "/Auth/Login";
+});
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IRepository, Repository>();
 
 /*
  * Configure the HTTP request pipeline
@@ -55,6 +58,7 @@ if (!app.Environment.IsDevelopment()) {
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
+app.UseAuthorization();
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
