@@ -7,6 +7,10 @@ public class FileManager : IFileManager {
         _imagePath = config["Path:Images"];
     }
 
+    public FileStream ImageStream(string image) {
+        return new FileStream(Path.Combine(_imagePath, image), FileMode.Open, FileAccess.Read);
+    }
+
     public async Task<string> SaveImage(IFormFile image) {
         try {
             var savePath = Path.Combine(_imagePath);
