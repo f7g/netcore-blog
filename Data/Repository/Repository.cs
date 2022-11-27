@@ -1,7 +1,6 @@
-using Blog.Data;
 using Blog.Models;
 
-namespace Blog.Repository;
+namespace Blog.Data.Repository;
 
 public class Repository : IRepository {
     // Global variables

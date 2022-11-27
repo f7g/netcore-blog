@@ -1,5 +1,5 @@
 using Blog.Models;
-using Blog.Repository;
+using Blog.Data.Repository;
 using Blog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

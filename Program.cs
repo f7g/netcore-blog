@@ -1,6 +1,6 @@
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-7.0&tabs=macos
 using Blog.Data;
-using Blog.Repository;
+using Blog.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 

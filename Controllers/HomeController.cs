@@ -1,5 +1,5 @@
 using Blog.Models;
-using Blog.Repository;
+using Blog.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers;

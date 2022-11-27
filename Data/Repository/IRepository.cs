@@ -1,6 +1,6 @@
 using Blog.Models;
 
-namespace Blog.Repository;
+namespace Blog.Data.Repository;
 
 public interface IRepository {
     Post GetPost(int id);
