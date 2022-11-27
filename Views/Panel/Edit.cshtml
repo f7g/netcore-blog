@@ -1,7 +1,8 @@
-@model Post
+@model PostViewModel
 
 <div>
-    <form asp-controller="Panel" asp-action="Edit" method="post">
+    @* enctype="multipart/form-data" attr allows you to submit your form with files in it *@
+    <form asp-controller="Panel" asp-action="Edit" method="post" enctype="multipart/form-data">
         <input asp-for="Id" type="hidden" />
         <div>
             <label>Title</label>
@@ -12,6 +13,11 @@
             <label>Body</label>
             @* The asp-for attr lets you bind your input data into your model *@
             <input asp-for="Body" />
+        </div>
+        <div>
+            <label>Image</label>
+            @* The asp-for attr lets you bind your input data into your model *@
+            <input asp-for="Image" />
         </div>
         <input type="submit" value="Submit" />
     </form>

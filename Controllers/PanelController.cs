@@ -1,5 +1,6 @@
 using Blog.Models;
 using Blog.Repository;
+using Blog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,17 +24,25 @@ public class PanelController : Controller {
 
     [HttpGet]
     public IActionResult Edit(int? id) {
-        if (id == null) return View(new Post());
+        if (id == null) return View(new PostViewModel());
         else {
             var post = _repo.GetPost((int) id);
-            return View(post);
+            return View(new PostViewModel {
+                Id = post.Id,
+                Title = post.Title,
+                Body = post.Body
+            });
         }
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(Post post) {
-        if (post.Title == null) return View(new Post());
-        if (post.Body == null) return View(new Post());
+    public async Task<IActionResult> Edit(PostViewModel vm) {
+        var post = new Post {
+            Id = vm.Id,
+            Title = vm.Title,
+            Body = vm.Body,
+            Image = "", // To do store image from view model
+        };
 
         if (post.Id > 0) _repo.UpdatePost(post);
         else _repo.AddPost(post);
