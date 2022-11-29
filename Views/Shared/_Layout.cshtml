@@ -20,8 +20,12 @@
             <a asp-controller="Auth" asp-action="Login">Sign In</a>
         }
     </nav>
+    
     <hr />
+    
     <main>@RenderBody()</main>
+
+    @RenderSection("scripts", false)
 </body>
 
 </html>

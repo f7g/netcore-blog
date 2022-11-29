@@ -2,9 +2,11 @@
 
 <h1>@Model.Title</h1>
 
-@if (!String.IsNullOrEmpty(Model.Image)) {
+@if (Model.Image != "Error" && !String.IsNullOrEmpty(Model.Image)) {
     var imagePath = $"/Image/{Model.Image}";
     <img src="@imagePath" height="500"/>
 }
 
-<p>@Model.Body</p>
+<article>
+    @Html.Raw(Model.Body)
+</article>
